@@ -518,7 +518,7 @@ export class ClusterConfigCtrl {
   - source_labels: ['__meta_kubernetes_pod_label_daemon', '__meta_kubernetes_pod_node_name']
     regex: 'node-exporter;(.*)'
     action: replace
-    target_label: nodename`;
+    target_label: kubernetes_node`;
   }
 
   generatePrometheusConfigMap() {
