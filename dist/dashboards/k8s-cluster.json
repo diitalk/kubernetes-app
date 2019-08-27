@@ -354,7 +354,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(sum (node_filesystem_size{kubernetes_node=~\"$node\"}) - sum (node_filesystem_free{kubernetes_node=~\"$node\"})) / sum (node_filesystem_size{kubernetes_node=~\"$node\"})",
+          "expr": "(sum (node_filesystem_size_bytes{kubernetes_node=~\"$node\"}) - sum (node_filesystem_free_bytes{kubernetes_node=~\"$node\"})) / sum (node_filesystem_size_bytes{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -693,14 +693,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(node_filesystem_size{kubernetes_node=~\"$node\"}) - sum(node_filesystem_free{kubernetes_node=~\"$node\"})",
+          "expr": "sum(node_filesystem_size_bytes{kubernetes_node=~\"$node\"}) - sum(node_filesystem_free_bytes{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "usage",
           "refId": "A"
         },
         {
-          "expr": "sum(node_filesystem_size{kubernetes_node=~\"$node\"})",
+          "expr": "sum(node_filesystem_size_bytes{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "limit",

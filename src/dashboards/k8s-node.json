@@ -143,7 +143,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum((avg(irate(node_cpu{kubernetes_node=~\"$node\", mode=\"system\"}[5m])) * 100))",
+          "expr": "sum((avg(irate(node_cpu_seconds_total{kubernetes_node=~\"$node\", mode=\"system\"}[5m])) * 100))",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -152,21 +152,21 @@
           "refId": "A"
         },
         {
-          "expr": "sum((avg(irate(node_cpu{kubernetes_node=~\"$node\", mode=\"user\"}[5m])) * 100))",
+          "expr": "sum((avg(irate(node_cpu_seconds_total{kubernetes_node=~\"$node\", mode=\"user\"}[5m])) * 100))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "user",
           "refId": "B"
         },
         {
-          "expr": "sum((avg(irate(node_cpu{kubernetes_node=~\"$node\", mode=\"iowait\"}[5m])) * 100))",
+          "expr": "sum((avg(irate(node_cpu_seconds_total{kubernetes_node=~\"$node\", mode=\"iowait\"}[5m])) * 100))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "iowait",
           "refId": "C"
         },
         {
-          "expr": "sum((avg(irate(node_cpu{kubernetes_node=~\"$node\", mode=\"steal\"}[5m])) * 100))",
+          "expr": "sum((avg(irate(node_cpu_seconds_total{kubernetes_node=~\"$node\", mode=\"steal\"}[5m])) * 100))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "steal",
@@ -256,7 +256,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(node_memory_MemAvailable{kubernetes_node=~\"$node\"})",
+          "expr": "sum(node_memory_MemAvailable_bytes{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -264,14 +264,14 @@
           "refId": "A"
         },
         {
-          "expr": "sum(node_memory_MemFree{kubernetes_node=~\"$node\"})",
+          "expr": "sum(node_memory_MemFree_bytes{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "free",
           "refId": "B"
         },
         {
-          "expr": "sum(node_memory_Active{kubernetes_node=~\"$node\"})",
+          "expr": "sum(node_memory_Active_bytes{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "active",
@@ -437,14 +437,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(node_filesystem_free{kubernetes_node=~\"$node\"}) by (kubernetes_node)",
+          "expr": "sum(node_filesystem_free_bytes{kubernetes_node=~\"$node\"}) by (kubernetes_node)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "{{ kubernetes_node }} free",
           "refId": "B"
         },
         {
-          "expr": "(sum(node_filesystem_size{kubernetes_node=~\"$node\"}) by (kubernetes_node) - sum(node_filesystem_free) by (kubernetes_node))",
+          "expr": "(sum(node_filesystem_size_bytes{kubernetes_node=~\"$node\"}) by (kubernetes_node) - sum(node_filesystem_free_bytes) by (kubernetes_node))",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -530,14 +530,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(node_disk_bytes_read{kubernetes_node=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_disk_read_bytes_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Read",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(node_disk_bytes_written{kubernetes_node=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_disk_written_bytes_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Write",
@@ -620,14 +620,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(node_disk_reads_completed{kubernetes_node=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_disk_reads_completed_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Reads",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(node_disk_writes_completed{kubernetes_node=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_disk_writes_completed_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Writes",
@@ -715,14 +715,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(node_network_receive_bytes{kubernetes_node=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_network_receive_bytes_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "receive",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(node_network_transmit_bytes{kubernetes_node=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_network_transmit_bytes_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "transmit",
@@ -810,14 +810,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(node_network_receive_errs{kubernetes_node=~\"$node\"})",
+          "expr": "sum(node_network_receive_errs_total{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "in",
           "refId": "A"
         },
         {
-          "expr": "sum(node_network_transmit_errs{kubernetes_node=~\"$node\"})",
+          "expr": "sum(node_network_transmit_errs_total{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "in",
@@ -905,14 +905,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(node_network_receive_packets{kubernetes_node=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_network_receive_packets_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "receive",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(node_network_transmit_packets{kubernetes_node=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_network_transmit_packets_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "transmit",
