@@ -2065,14 +2065,14 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(delta(kube_pod_container_status_restarts{namespace=\"kube-system\"}[30m]))",
+          "expr": "sum(delta(kube_pod_container_status_restarts{namespace=~\"$namespace\"}[30m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
         }
       ],
       "thresholds": "",
-      "title": "Containers Restarts (Last 30 Minutes)",
+      "title": "Container Restarts (Last 30 Minutes)",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
